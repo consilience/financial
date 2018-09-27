@@ -3,6 +3,7 @@
 namespace Consilience\Iso8583\Cache;
 
 use Consilience\Iso8583\Container\PropertyAnnotationContainer;
+use Consilience\Iso8583\Message\Schema\Exception\DefinitionNotFoundException;
 use Illuminate\Support\Collection;
 
 /**
@@ -82,12 +83,19 @@ class CacheFile
      * @param $property
      * @param $value
      * @return mixed
+     * @throws DefinitionNotFoundException
      */
     private function findPropertyInSchema($property, $value)
     {
         $annotations = array_filter($this->schemaCache, function($annotation) use ($property, $value) {
             return $annotation[$property] === $value;
         });
+
+        if (empty($annotations)) {
+            throw new DefinitionNotFoundException(
+                ucfirst("{$property} {$value} was not found in the schema cache")
+            );
+        }
 
         return array_shift($annotations);
     }

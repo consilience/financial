@@ -5,7 +5,9 @@ namespace Consilience\Iso8583\Tests;
 use Consilience\Iso8583\Cache\CacheManager;
 use Consilience\Iso8583\Financial;
 use Consilience\Iso8583\Message\Packer\MessagePacker;
+use Consilience\Iso8583\Message\Schema\Exception\DefinitionNotFoundException;
 use Consilience\Iso8583\Message\Schema\ISO8583;
+use Consilience\Iso8583\Message\Schema\MessageSchemaInterface;
 use Consilience\Iso8583\Message\Schema\SchemaManager;
 use Consilience\Iso8583\Message\Unpacker\MessageUnpacker;
 use PHPUnit\Framework\TestCase;
@@ -125,5 +127,39 @@ class FinancialTest extends TestCase
         $this->assertEquals(self::DUMMY_PAN, $schema->getPan());
         $this->assertEquals('GBP', $schema->getCurrencyCodeCardholderBilling());
         $this->assertEquals('sample', $schema->getPrivateReserved6());
+    }
+
+    /** @test */
+    public function exceptionOnUndefinedBit()
+    {
+        $cacheManager = new CacheManager();
+
+        $schemaManager = new SchemaManager(new class implements MessageSchemaInterface
+        {
+            /**
+             * Gets the schema name
+             *
+             * @return string
+             */
+            public function getName() : string
+            {
+                return "Dummy schema";
+            }
+        }, $cacheManager);
+
+        $messageUnpacker = (new Financial($cacheManager))->unpack($schemaManager, false);
+
+        $isoMessage = '840200c0000000000020010000000000000080161029384756193749GBP0000000000000001006sample';
+
+        $messageUnpacker->setHeaderLength(self::DUMMY_HEADER_LENGTH);
+
+        try {
+            $messageUnpacker->parse($isoMessage);
+        } catch (DefinitionNotFoundException $e) {
+            $this->assertEquals('Bit 2 was not found in the schema cache', $e->getMessage());
+            return;
+        }
+
+        $this->fail('An excepted exception was not thrown.');
     }
 }
