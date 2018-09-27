@@ -47,6 +47,32 @@ class FinancialTest extends TestCase
     }
 
     /** @test */
+    public function packNonEncoded()
+    {
+        $cacheManager = new CacheManager();
+
+        /** @var ISO8583 $schemaManager */
+        $schemaManager = new SchemaManager(new ISO8583(), $cacheManager);
+
+        $schemaManager->setPan(self::DUMMY_PAN);
+        $schemaManager->setCurrencyCodeCardholderBilling('GBP');
+        $schemaManager->setPrivateReserved6('sample');
+        $schemaManager->setMessageAuthenticationCode('0000000000000001');
+
+        $messagePacker = (new Financial($cacheManager))->pack($schemaManager, false);
+
+        $messagePacker->setMti(bin2hex(self::DUMMY_MTI));
+        $messagePacker->setHeaderLength(self::DUMMY_HEADER_LENGTH);
+
+        $this->assertInstanceOf(MessagePacker::class, $messagePacker);
+
+        $this->assertEquals(
+            '8830323030c0000000000020010000000000000080161029384756193749GBP0000000000000001006sample',
+            $messagePacker->generate()
+        );
+    }
+
+    /** @test */
     public function unpack()
     {
         $cacheManager = new CacheManager();
@@ -73,5 +99,31 @@ class FinancialTest extends TestCase
         $this->assertInstanceOf(MessageUnpacker::class, $messageUnpacker);
         $this->assertEquals(self::DUMMY_MTI, $unpackedMessage->getMti());
         $this->assertEquals(self::DUMMY_PAN, $schema->getPan());
+    }
+
+    /** @test */
+    public function unpackNonEncoded()
+    {
+        $cacheManager = new CacheManager();
+
+        /** @var ISO8583 $schemaManager */
+        $schemaManager = new SchemaManager(new ISO8583(), $cacheManager);
+
+        $messageUnpacker = (new Financial($cacheManager))->unpack($schemaManager, false);
+
+        $isoMessage = '840200c0000000000020010000000000000080161029384756193749GBP0000000000000001006sample';
+
+        $messageUnpacker->setHeaderLength(self::DUMMY_HEADER_LENGTH);
+
+        $unpackedMessage = $messageUnpacker->parse($isoMessage);
+
+        /** @var ISO8583 $schema */
+        $schema = $schemaManager->getSchema();
+
+        $this->assertInstanceOf(MessageUnpacker::class, $messageUnpacker);
+        $this->assertEquals(self::DUMMY_MTI, $unpackedMessage->getMti());
+        $this->assertEquals(self::DUMMY_PAN, $schema->getPan());
+        $this->assertEquals('GBP', $schema->getCurrencyCodeCardholderBilling());
+        $this->assertEquals('sample', $schema->getPrivateReserved6());
     }
 }

@@ -13,29 +13,35 @@ use Consilience\Iso8583\Message\Schema\SchemaManager;
  */
 class MessagePacker extends AbstractPackUnpack
 {
-
     /** @var SchemaManager $schemaManager the message schema manager */
     protected $schemaManager;
 
     /** @var CacheManager $cacheManager the schema cache manager */
     protected $cacheManager;
 
+    /** @var bool $encoded indicates whether the message has to be encoded */
+    private $encoded;
+
     /**
      * MessagePacker constructor.
      *
-     * @param CacheManager  $cacheManager  the schema cache manager
+     * @param CacheManager $cacheManager the schema cache manager
      * @param SchemaManager $schemaManager the schema manager class
+     * @param bool $encoded whether the message has to be encoded
      */
-    public function __construct(CacheManager $cacheManager, SchemaManager $schemaManager)
+    public function __construct(CacheManager $cacheManager, SchemaManager $schemaManager, $encoded)
     {
         $this->cacheManager  = $cacheManager;
         $this->schemaManager = $schemaManager;
+        $this->encoded = $encoded;
     }
 
     /**
      * Generates the packed message
      *
      * @return string the packed message
+     * @throws \Consilience\Iso8583\Cache\Exception\CacheFileNotFoundException
+     * @throws \Consilience\Iso8583\Message\Mapper\Exception\MapperNotFoundException
      */
     public function generate(): string
     {
@@ -56,12 +62,19 @@ class MessagePacker extends AbstractPackUnpack
     protected function parseMessageLengthHeader(string $message): string
     {
         if ($this->getHeaderLength() > 0) {
-            return (string) str_pad(
-                dechex((strlen($message) / 2) + $this->getHeaderLength()),
-                ($this->getHeaderLength() * 2),
-                0,
-                STR_PAD_LEFT
-            );
+            return $this->encoded
+                ? (string) str_pad(
+                    dechex((strlen($message) / 2) + $this->getHeaderLength()),
+                    ($this->getHeaderLength() * 2),
+                    0,
+                    STR_PAD_LEFT
+                )
+                : str_pad(
+                    strlen($message) + $this->getHeaderLength(),
+                    $this->getHeaderLength(),
+                    0,
+                    STR_PAD_LEFT
+                );
         }
 
         return '';
@@ -74,7 +87,9 @@ class MessagePacker extends AbstractPackUnpack
      */
     protected function parseMti(): string
     {
-        return str_pad(bin2hex($this->getMti()), 8, 0, STR_PAD_LEFT);
+        return $this->encoded
+            ? str_pad(bin2hex($this->getMti()), 8, 0, STR_PAD_LEFT)
+            : $this->getMti();
     }
 
     /**
@@ -83,6 +98,7 @@ class MessagePacker extends AbstractPackUnpack
      * @param array $setFields set fields on the schema
      *
      * @return string the parsed bitmap
+     * @throws \Consilience\Iso8583\Cache\Exception\CacheFileNotFoundException
      */
     protected function parseBitmap(array $setFields): string
     {
@@ -137,6 +153,8 @@ class MessagePacker extends AbstractPackUnpack
      * @param array $setFields set fields on the schema
      *
      * @return string the parsed data element
+     * @throws \Consilience\Iso8583\Cache\Exception\CacheFileNotFoundException
+     * @throws \Consilience\Iso8583\Message\Mapper\Exception\MapperNotFoundException
      */
     protected function parseDataElement(array $setFields): string
     {
@@ -147,7 +165,8 @@ class MessagePacker extends AbstractPackUnpack
             $fieldData = $schemaCache->getDataForProperty($field);
 
             $dataCache[$fieldData->getBit()] = $fieldData->getMapper()->pack(
-                $this->schemaManager->{$fieldData->getGetterName()}()
+                $this->schemaManager->{$fieldData->getGetterName()}(),
+                $this->encoded
             );
         }
 

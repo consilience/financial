@@ -14,23 +14,28 @@ use Consilience\Iso8583\Message\Unpacker\Exception\MessageLengthHeaderException;
  */
 class MessageUnpacker extends AbstractPackUnpack
 {
-
     /** @var SchemaManager $schemaManager the message schema manager */
     protected $schemaManager;
 
     /** @var CacheManager $cacheManager the schema cache manager */
     protected $cacheManager;
 
+    /** @var bool $encoded indicates whether the message is encoded */
+    private $encoded;
+
+
     /**
      * MessageUnpacker constructor.
      *
-     * @param CacheManager  $cacheManager  the schema cache manager
+     * @param CacheManager $cacheManager the schema cache manager
      * @param SchemaManager $schemaManager the schema manager class
+     * @param bool $encoded whether the message is encoded
      */
-    public function __construct(CacheManager $cacheManager, SchemaManager $schemaManager)
+    public function __construct(CacheManager $cacheManager, SchemaManager $schemaManager, $encoded)
     {
         $this->cacheManager  = $cacheManager;
         $this->schemaManager = $schemaManager;
+        $this->encoded = $encoded;
     }
 
     /**
@@ -41,25 +46,29 @@ class MessageUnpacker extends AbstractPackUnpack
      * @return MessageUnpacker
      *
      * @throws MessageLengthHeaderException if the message fails length validation
+     * @throws \Consilience\Iso8583\Cache\Exception\CacheFileNotFoundException
+     * @throws \Consilience\Iso8583\Message\Mapper\Exception\MapperNotFoundException
      */
     public function parse(string $message): MessageUnpacker
     {
         // Parse the message length header
         if ($this->getHeaderLength() > 0) {
             $messageLengthHeader = $this->parseMessageLengthHeader($message);
-            $this->shrink($message, ($this->getHeaderLength() * 2));
+            $shrinkLength = $this->encoded ? $this->getHeaderLength() * 2 : $this->getHeaderLength();
+            $this->shrink($message, $shrinkLength);
 
-            if (($messageLengthHeader - $this->getHeaderLength()) != (strlen($message) / 2)) {
+            $shouldBeLength = $this->encoded ? strlen($message) / 2 : strlen($message);
+            if (($messageLengthHeader - $this->getHeaderLength()) != $shouldBeLength) {
                 throw new MessageLengthHeaderException(
                     'Message length should be ' . ($messageLengthHeader - $this->getHeaderLength()) . ', but ' .
-                    (strlen($message) / 2) . ' was found'
+                    $shouldBeLength . ' was found'
                 );
             }
         }
 
         // Parse the message type indicator
         $this->setMti((string) $this->parseMti($message));
-        $this->shrink($message, 8);
+        $this->shrink($message, $this->encoded ? 8 : 4);
 
         // Parse the bitmap
         $bitmap = $this->parseBitmap($message);
@@ -111,7 +120,9 @@ class MessageUnpacker extends AbstractPackUnpack
      */
     protected function parseMessageLengthHeader(string $message): string
     {
-        return base_convert(substr($message, 0, ($this->getHeaderLength() * 2)), 16, 10);
+        return $this->encoded
+            ? base_convert(substr($message, 0, ($this->getHeaderLength() * 2)), 16, 10)
+            : substr($message, 0, $this->getHeaderLength());
     }
 
     /**
@@ -123,7 +134,9 @@ class MessageUnpacker extends AbstractPackUnpack
      */
     protected function parseMti(string $message): string
     {
-        return hex2bin(substr($message, 0, 8));
+        return $this->encoded
+            ? hex2bin(substr($message, 0, 8))
+            : substr($message, 0, 4);
     }
 
     /**
@@ -158,10 +171,12 @@ class MessageUnpacker extends AbstractPackUnpack
     /**
      * Parses the data element
      *
-     * @param string $bitmap  the message bitmap
+     * @param string $bitmap the message bitmap
      * @param string $message the message data element
      *
      * @return array the parsed data element
+     * @throws \Consilience\Iso8583\Cache\Exception\CacheFileNotFoundException
+     * @throws \Consilience\Iso8583\Message\Mapper\Exception\MapperNotFoundException
      */
     protected function parseDataElement(string $bitmap, string $message): array
     {
@@ -180,17 +195,23 @@ class MessageUnpacker extends AbstractPackUnpack
                 $bitData = $schemaCache->getDataForBit($bit);
 
                 if ($bitData->isFixedLength()) {
-                    $bitReadLength = $bitData->getLength() * 2;
+                    $bitReadLength = $this->encoded
+                        ? $bitData->getLength() * 2
+                        : $bitData->getLength();
                 } else {
-                    $bitLengthIndicator = $bitData->getLengthIndicator() * 2;
-                    $bitReadLength      = hex2bin(substr($message, 0, $bitLengthIndicator)) * 2;
+                    $bitLengthIndicator = $this->encoded
+                        ? $bitData->getLengthIndicator() * 2
+                        : $bitData->getLengthIndicator();
+                    $bitReadLength = $this->encoded
+                        ? hex2bin(substr($message, 0, $bitLengthIndicator)) * 2
+                        : intval(substr($message, 0, $bitLengthIndicator));
 
                     $this->shrink($message, $bitLengthIndicator);
                 }
 
                 $fieldData = substr($message, 0, $bitReadLength);
 
-                $unpackedBit = $bitData->getMapper()->unpack($fieldData);
+                $unpackedBit = $bitData->getMapper()->unpack($fieldData, $this->encoded);
 
                 $this->shrink($message, $bitReadLength);
 

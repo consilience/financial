@@ -2,8 +2,8 @@
 
 namespace Consilience\Iso8583\Message\Mapper;
 
-use DateTime;
 use Consilience\Iso8583\Container\PropertyAnnotationContainer;
+use DateTime;
 
 /**
  * Class BinaryMapper
@@ -12,7 +12,6 @@ use Consilience\Iso8583\Container\PropertyAnnotationContainer;
  */
 class BinaryMapper implements MapperInterface
 {
-
     /** @var PropertyAnnotationContainer $propertyAnnotationContainer the property annotation data container */
     protected $propertyAnnotationContainer;
 
@@ -29,15 +28,21 @@ class BinaryMapper implements MapperInterface
     /**
      * @inheritdoc
      */
-    public function pack(string $data): string
+    public function pack(string $data, $encoded) : string
     {
-        $packedField = bin2hex($data);
+        $packedField = $encoded ? bin2hex($data) : $data;
 
         if (!$this->propertyAnnotationContainer->isFixedLength()) {
-            $variableFieldHeaderLength = sprintf(
+            $paddingLength = $encoded ? strlen($packedField) / 2 : strlen($packedField);
+
+            $lengthIndicator = sprintf(
                 '%0' . $this->propertyAnnotationContainer->getLengthIndicator() . 'd',
-                strlen($packedField) / 2
+                $paddingLength
             );
+
+            $variableFieldHeaderLength = $encoded
+                ? bin2hex($lengthIndicator)
+                : $lengthIndicator;
 
             return $variableFieldHeaderLength . $packedField;
         }
@@ -48,9 +53,9 @@ class BinaryMapper implements MapperInterface
     /**
      * @inheritdoc
      */
-    public function unpack(string $data)
+    public function unpack(string $data, $encoded)
     {
-        $parsedData = hex2bin($data);
+        $parsedData = $encoded ? hex2bin($data) : $data;
 
         if ('DateTime' == $this->propertyAnnotationContainer->getType()) {
             $parsedData = DateTime::createFromFormat($this->propertyAnnotationContainer->getFormat(), $parsedData);

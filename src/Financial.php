@@ -32,23 +32,25 @@ class Financial
      * Returns an instance of the message packer
      *
      * @param SchemaManager $schemaManager
+     * @param bool $encoded
      *
      * @return MessagePacker
      */
-    public function pack(SchemaManager $schemaManager): MessagePacker
+    public function pack(SchemaManager $schemaManager, $encoded = true) : MessagePacker
     {
-        return new MessagePacker($this->cacheManager, $schemaManager);
+        return new MessagePacker($this->cacheManager, $schemaManager, $encoded);
     }
 
     /**
      * Returns an instance of the message unpacker
      *
      * @param SchemaManager $schemaManager
+     * @param bool $encoded
      *
      * @return MessageUnpacker
      */
-    public function unpack(SchemaManager $schemaManager): MessageUnpacker
+    public function unpack(SchemaManager $schemaManager, $encoded = true) : MessageUnpacker
     {
-        return new MessageUnpacker($this->cacheManager, $schemaManager);
+        return new MessageUnpacker($this->cacheManager, $schemaManager, $encoded);
     }
 }
