@@ -4,7 +4,6 @@ namespace Consilience\Iso8583\Message\Unpacker;
 
 use Consilience\Iso8583\Cache\CacheManager;
 use Consilience\Iso8583\Message\AbstractPackUnpack;
-use Consilience\Iso8583\Message\Schema\MessageSchemaInterface;
 use Consilience\Iso8583\Message\Schema\SchemaManager;
 use Consilience\Iso8583\Message\Unpacker\Exception\MessageLengthHeaderException;
 

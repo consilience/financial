@@ -2,8 +2,8 @@
 
 namespace Consilience\Iso8583\Cache;
 
-use Illuminate\Support\Collection;
 use Consilience\Iso8583\Container\PropertyAnnotationContainer;
+use Illuminate\Support\Collection;
 
 /**
  * Class CacheFile
@@ -29,9 +29,9 @@ class CacheFile
     /**
      * Returns the schema data
      *
-     * @return Collection
+     * @return array
      */
-    public function getSchemaData(): Collection
+    public function getSchemaData() : array
     {
         return $this->schemaCache;
     }
@@ -45,7 +45,9 @@ class CacheFile
      */
     public function getDataForBit($bit)
     {
-        return new PropertyAnnotationContainer($this->schemaCache->keyBy('bit')[$bit]);
+        return new PropertyAnnotationContainer(
+            $this->findPropertyInSchema('bit', $bit)
+        );
     }
 
     /**
@@ -57,7 +59,9 @@ class CacheFile
      */
     public function getDataForProperty($property)
     {
-        return new PropertyAnnotationContainer($this->schemaCache->keyBy('property')[$property]);
+        return new PropertyAnnotationContainer(
+            $this->findPropertyInSchema('property', $property)
+        );
     }
 
     /**
@@ -65,10 +69,26 @@ class CacheFile
      *
      * @param string $schemaData the raw cache files contents
      *
-     * @return Collection
+     * @return array
      */
-    protected function parseSchemaData(string $schemaData): Collection
+    protected function parseSchemaData(string $schemaData) : array
     {
-        return new Collection(json_decode($schemaData, true));
+        return json_decode($schemaData, true);
+    }
+
+    /**
+     * Finds details of an annotation by property.
+     *
+     * @param $property
+     * @param $value
+     * @return mixed
+     */
+    private function findPropertyInSchema($property, $value)
+    {
+        $annotations = array_filter($this->schemaCache, function($annotation) use ($property, $value) {
+            return $annotation[$property] === $value;
+        });
+
+        return array_shift($annotations);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Consilience\Iso8583\Tests\Cache;
 
-use Illuminate\Support\Collection;
 use Consilience\Iso8583\Cache\CacheFile;
 use Consilience\Iso8583\Container\PropertyAnnotationContainer;
 use PHPUnit\Framework\TestCase;
@@ -31,8 +30,7 @@ class CacheFileTest extends TestCase
             'property'        => 'pan',
         ];
 
-        $this->assertInstanceOf(Collection::class, $schemaData);
-        $this->assertEquals($parsedSchema, $schemaData->toArray()[0]);
+        $this->assertEquals($parsedSchema, $schemaData[0]);
     }
 
     /** @test */
