@@ -1,20 +1,18 @@
 <?php
 
-namespace Kaperys\Financial\Cache;
+namespace Consilience\Iso8583\Cache;
 
-use Kaperys\Financial\Cache\Exception\CacheConfigurationException;
-use Kaperys\Financial\Cache\Exception\CacheFileNotFoundException;
-use Kaperys\Financial\Cache\Exception\CacheWriterException;
-use Kaperys\Financial\Message\Schema\MessageSchemaInterface;
+use Consilience\Iso8583\Cache\Exception\CacheConfigurationException;
+use Consilience\Iso8583\Cache\Exception\CacheFileNotFoundException;
+use Consilience\Iso8583\Cache\Exception\CacheWriterException;
+use Consilience\Iso8583\Message\Schema\MessageSchemaInterface;
 use ReflectionClass;
 use zpt\anno\Annotations;
 
 /**
  *  Class CacheManager
  *
- * @package Kaperys\Financial\Cache
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Cache
  */
 class CacheManager
 {

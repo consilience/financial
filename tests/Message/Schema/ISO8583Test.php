@@ -1,18 +1,16 @@
 <?php
 
-namespace Kaperys\Financial\Tests\Message\Schema;
+namespace Consilience\Iso8583\Tests\Message\Schema;
 
 use DateTime;
-use Kaperys\Financial\Cache\CacheManager;
+use Consilience\Iso8583\Cache\CacheManager;
 use PHPUnit\Framework\TestCase;
-use Kaperys\Financial\Message\Schema\ISO8583;
+use Consilience\Iso8583\Message\Schema\ISO8583;
 
 /**
  * Class ISO8583Test
  *
- * @package Kaperys\Financial\Tests\Message\Schema
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Tests\Message\Schema
  */
 class ISO8583Test extends TestCase
 {

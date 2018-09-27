@@ -1,18 +1,16 @@
 <?php
 
-namespace Kaperys\Financial\Tests\Cache;
+namespace Consilience\Iso8583\Tests\Cache;
 
 use Illuminate\Support\Collection;
-use Kaperys\Financial\Cache\CacheFile;
-use Kaperys\Financial\Container\PropertyAnnotationContainer;
+use Consilience\Iso8583\Cache\CacheFile;
+use Consilience\Iso8583\Container\PropertyAnnotationContainer;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class CacheFileTest
  *
- * @package Kaperys\Financial\Tests\Cache
- *
- * @author Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Tests\Cache
  */
 class CacheFileTest extends TestCase
 {

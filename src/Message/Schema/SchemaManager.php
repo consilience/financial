@@ -1,18 +1,16 @@
 <?php
 
-namespace Kaperys\Financial\Message\Schema;
+namespace Consilience\Iso8583\Message\Schema;
 
-use Kaperys\Financial\Cache\CacheManager;
-use Kaperys\Financial\Message\Schema\Helpers\AnnotationNameFormatter;
-use Kaperys\Financial\Message\Schema\Validator\FieldValidator;
+use Consilience\Iso8583\Cache\CacheManager;
+use Consilience\Iso8583\Message\Schema\Helpers\AnnotationNameFormatter;
+use Consilience\Iso8583\Message\Schema\Validator\FieldValidator;
 use ReflectionClass;
 
 /**
  * Class SchemaManager
  *
- * @package Kaperys\Financial\Message\Schema
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Schema
  */
 class SchemaManager
 {

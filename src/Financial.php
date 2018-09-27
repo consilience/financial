@@ -1,18 +1,16 @@
 <?php
 
-namespace Kaperys\Financial;
+namespace Consilience\Iso8583;
 
-use Kaperys\Financial\Cache\CacheManager;
-use Kaperys\Financial\Message\Packer\MessagePacker;
-use Kaperys\Financial\Message\Schema\SchemaManager;
-use Kaperys\Financial\Message\Unpacker\MessageUnpacker;
+use Consilience\Iso8583\Cache\CacheManager;
+use Consilience\Iso8583\Message\Packer\MessagePacker;
+use Consilience\Iso8583\Message\Schema\SchemaManager;
+use Consilience\Iso8583\Message\Unpacker\MessageUnpacker;
 
 /**
  * Class Financial
  *
- * @package Kaperys\Financial
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583
  */
 class Financial
 {

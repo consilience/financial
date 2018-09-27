@@ -1,13 +1,11 @@
 <?php
 
-namespace Kaperys\Financial\Message\Schema;
+namespace Consilience\Iso8583\Message\Schema;
 
 /**
  * Class ISO8583 (1987 spec)
  *
- * @package Kaperys\Financial\Message
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message
  */
 class ISO8583 implements MessageSchemaInterface
 {

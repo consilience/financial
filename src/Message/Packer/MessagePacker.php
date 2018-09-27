@@ -1,17 +1,15 @@
 <?php
 
-namespace Kaperys\Financial\Message\Packer;
+namespace Consilience\Iso8583\Message\Packer;
 
-use Kaperys\Financial\Cache\CacheManager;
-use Kaperys\Financial\Message\AbstractPackUnpack;
-use Kaperys\Financial\Message\Schema\SchemaManager;
+use Consilience\Iso8583\Cache\CacheManager;
+use Consilience\Iso8583\Message\AbstractPackUnpack;
+use Consilience\Iso8583\Message\Schema\SchemaManager;
 
 /**
  * Class MessagePacker
  *
- * @package Kaperys\Financial\Message\Packer
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Packer
  */
 class MessagePacker extends AbstractPackUnpack
 {

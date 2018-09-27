@@ -1,17 +1,15 @@
 <?php
 
-namespace Kaperys\Financial\Message\Schema\Validator;
+namespace Consilience\Iso8583\Message\Schema\Validator;
 
-use Kaperys\Financial\Container\PropertyAnnotationContainer;
-use Kaperys\Financial\Message\Constants\Display;
-use Kaperys\Financial\Message\Schema\Validator\Exception\FieldValidationException;
+use Consilience\Iso8583\Container\PropertyAnnotationContainer;
+use Consilience\Iso8583\Message\Constants\Display;
+use Consilience\Iso8583\Message\Schema\Validator\Exception\FieldValidationException;
 
 /**
  * Class FieldValidator
  *
- * @package Kaperys\Financial\Message\Schema\Validator
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Schema\Validator
  */
 class FieldValidator
 {

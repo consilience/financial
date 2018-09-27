@@ -1,8 +1,8 @@
 <?php
 
-namespace Kaperys\Financial\Tests\Cache;
+namespace Consilience\Iso8583\Tests\Cache;
 
-use Kaperys\Financial\Cache\CacheManager;
+use Consilience\Iso8583\Cache\CacheManager;
 use PHPUnit\Framework\TestCase;
 
 class CacheManagerTest extends TestCase

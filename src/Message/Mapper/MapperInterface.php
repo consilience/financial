@@ -1,13 +1,11 @@
 <?php
 
-namespace Kaperys\Financial\Message\Mapper;
+namespace Consilience\Iso8583\Message\Mapper;
 
 /**
  * Interface MapperInterface
  *
- * @package Kaperys\Financial\Message\Mapper
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Mapper
  */
 interface MapperInterface
 {

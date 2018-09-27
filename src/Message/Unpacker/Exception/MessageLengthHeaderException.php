@@ -1,6 +1,6 @@
 <?php
 
-namespace Kaperys\Financial\Message\Unpacker\Exception;
+namespace Consilience\Iso8583\Message\Unpacker\Exception;
 
 use Exception;
 
@@ -9,9 +9,7 @@ use Exception;
  *
  * Class MessageLengthHeaderException
  *
- * @package Kaperys\Financial\Message\Unpacker\Exception
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Unpacker\Exception
  */
 class MessageLengthHeaderException extends Exception
 {

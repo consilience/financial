@@ -1,18 +1,16 @@
 <?php
 
-namespace Kaperys\Financial\Tests\Message\Schema;
+namespace Consilience\Iso8583\Tests\Message\Schema;
 
-use Kaperys\Financial\Message\Schema\Exception\MessageTypeIndicator\ClassNotFoundException;
-use Kaperys\Financial\Message\Schema\Exception\MessageTypeIndicator\CommunicatorNotFoundException;
-use Kaperys\Financial\Message\Schema\MessageTypeIndicator;
+use Consilience\Iso8583\Message\Schema\Exception\MessageTypeIndicator\ClassNotFoundException;
+use Consilience\Iso8583\Message\Schema\Exception\MessageTypeIndicator\CommunicatorNotFoundException;
+use Consilience\Iso8583\Message\Schema\MessageTypeIndicator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class MessageTypeIndicatorTest
  *
- * @package Kaperys\Financial\Tests\Message\Schema
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Tests\Message\Schema
  */
 class MessageTypeIndicatorTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kaperys\Financial\Message\Mapper\Exception;
+namespace Consilience\Iso8583\Message\Mapper\Exception;
 
 use Exception;
 
@@ -9,9 +9,7 @@ use Exception;
  *
  * Class MapperNotFoundException
  *
- * @package Kaperys\Financial\Message\Mapper\Exception
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Mapper\Exception
  */
 class MapperNotFoundException extends Exception
 {

@@ -1,16 +1,14 @@
 <?php
 
-namespace Kaperys\Financial\Message\Schema;
+namespace Consilience\Iso8583\Message\Schema;
 
-use Kaperys\Financial\Message\Schema\Exception\MessageTypeIndicator\ClassNotFoundException;
-use Kaperys\Financial\Message\Schema\Exception\MessageTypeIndicator\CommunicatorNotFoundException;
+use Consilience\Iso8583\Message\Schema\Exception\MessageTypeIndicator\ClassNotFoundException;
+use Consilience\Iso8583\Message\Schema\Exception\MessageTypeIndicator\CommunicatorNotFoundException;
 
 /**
  * Class MessageTypeIndicator
  *
- * @package Kaperys\Financial\Message\Schema
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Schema
  */
 class MessageTypeIndicator
 {

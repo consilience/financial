@@ -1,6 +1,6 @@
 <?php
 
-namespace Kaperys\Financial\Cache\Exception;
+namespace Consilience\Iso8583\Cache\Exception;
 
 use Exception;
 
@@ -9,9 +9,7 @@ use Exception;
  *
  * Class CacheWriterException
  *
- * @package Kaperys\Financial\Cache\Exception
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Cache\Exception
  */
 class CacheWriterException extends Exception
 {

@@ -2,11 +2,11 @@
 
 require '../vendor/autoload.php';
 
-use Kaperys\Financial\Financial;
-use Kaperys\Financial\Cache\CacheManager;
-use Kaperys\Financial\Message\Schema\ISO8583;
-use Kaperys\Financial\Message\Schema\SchemaManager;
-use Kaperys\Financial\Message\Packer\MessagePacker;
+use Consilience\Iso8583\Financial;
+use Consilience\Iso8583\Cache\CacheManager;
+use Consilience\Iso8583\Message\Schema\ISO8583;
+use Consilience\Iso8583\Message\Schema\SchemaManager;
+use Consilience\Iso8583\Message\Packer\MessagePacker;
 
 /*
  * 1) Generate the schema cache

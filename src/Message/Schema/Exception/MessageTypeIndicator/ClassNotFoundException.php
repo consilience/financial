@@ -1,6 +1,6 @@
 <?php
 
-namespace Kaperys\Financial\Message\Schema\Exception\MessageTypeIndicator;
+namespace Consilience\Iso8583\Message\Schema\Exception\MessageTypeIndicator;
 
 use Exception;
 
@@ -9,9 +9,7 @@ use Exception;
  *
  * Class ClassNotFoundException
  *
- * @package Kaperys\Financial\Message\Schema\Exception\MessageTypeIndicator
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Schema\Exception\MessageTypeIndicator
  */
 class ClassNotFoundException extends Exception
 {

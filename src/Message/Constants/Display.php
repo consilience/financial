@@ -1,15 +1,13 @@
 <?php
 
-namespace Kaperys\Financial\Message\Constants;
+namespace Consilience\Iso8583\Message\Constants;
 
 /**
  * Interface Display
  *
- * @package Kaperys\Financial\Message
+ * @package Consilience\Iso8583\Message
  *
  * @see     https://en.wikipedia.org/wiki/ISO_8583#Data_elements
- *
- * @author  Mike Kaperys <mike@kaperys.io>
  */
 interface Display
 {

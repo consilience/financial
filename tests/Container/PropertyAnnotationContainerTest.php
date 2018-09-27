@@ -1,19 +1,17 @@
 <?php
 
-namespace Kaperys\Financial\Tests\Container;
+namespace Consilience\Iso8583\Tests\Container;
 
-use Kaperys\Financial\Container\PropertyAnnotationContainer;
-use Kaperys\Financial\Message\Mapper\AlphanumericMapper;
-use Kaperys\Financial\Message\Mapper\BinaryMapper;
-use Kaperys\Financial\Message\Mapper\Exception\MapperNotFoundException;
+use Consilience\Iso8583\Container\PropertyAnnotationContainer;
+use Consilience\Iso8583\Message\Mapper\AlphanumericMapper;
+use Consilience\Iso8583\Message\Mapper\BinaryMapper;
+use Consilience\Iso8583\Message\Mapper\Exception\MapperNotFoundException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class PropertyAnnotationContainerTest
  *
- * @package Kaperys\Financial\Tests\Container
- *
- * @author Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Tests\Container
  */
 class PropertyAnnotationContainerTest extends TestCase
 {

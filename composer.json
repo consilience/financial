@@ -1,13 +1,7 @@
 {
-    "name": "kaperys/financial",
+    "name": "consilience/iso8583",
     "description": "A simple PHP ISO8583 pack and unpack library",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Mike Kaperys",
-            "email": "mike@kaperys.io"
-        }
-    ],
     "require": {
         "php": "~7.0",
         "zeptech/annotations": "^1.1",
@@ -20,8 +14,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Kaperys\\Financial\\": "src/",
-            "Kaperys\\Financial\\Tests\\": "tests/"
+            "Consilience\\Iso8583\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Consilience\\Iso8583\\Tests\\": "tests/"
         }
     },
     "scripts": {

@@ -1,13 +1,11 @@
 <?php
 
-namespace Kaperys\Financial\Message\Schema;
+namespace Consilience\Iso8583\Message\Schema;
 
 /**
  * Interface MessageSchemaInterface
  *
- * @package Kaperys\Financial\Message\Schema
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Schema
  */
 interface MessageSchemaInterface
 {

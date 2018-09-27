@@ -1,13 +1,11 @@
 <?php
 
-namespace Kaperys\Financial\Message\Schema\Helpers;
+namespace Consilience\Iso8583\Message\Schema\Helpers;
 
 /**
  * Class AnnotationNameFormatter
  *
- * @package Kaperys\Financial\Message\Schema\Helpers
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Schema\Helpers
  */
 trait AnnotationNameFormatter
 {

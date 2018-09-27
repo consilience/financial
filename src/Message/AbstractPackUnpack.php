@@ -1,15 +1,13 @@
 <?php
 
-namespace Kaperys\Financial\Message;
+namespace Consilience\Iso8583\Message;
 
-use Kaperys\Financial\Message\Schema\MessageTypeIndicator;
+use Consilience\Iso8583\Message\Schema\MessageTypeIndicator;
 
 /**
  * Class AbstractPackUnpack
  *
- * @package Kaperys\Financial\Message
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message
  */
 abstract class AbstractPackUnpack
 {
@@ -43,7 +41,7 @@ abstract class AbstractPackUnpack
     {
         return $this->headerLength;
     }
-    
+
     /**
      * Sets the message type indicator
      *

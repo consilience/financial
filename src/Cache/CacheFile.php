@@ -1,16 +1,14 @@
 <?php
 
-namespace Kaperys\Financial\Cache;
+namespace Consilience\Iso8583\Cache;
 
 use Illuminate\Support\Collection;
-use Kaperys\Financial\Container\PropertyAnnotationContainer;
+use Consilience\Iso8583\Container\PropertyAnnotationContainer;
 
 /**
  * Class CacheFile
  *
- * @package Kaperys\Financial\Cache
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Cache
  */
 class CacheFile
 {

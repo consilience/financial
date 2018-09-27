@@ -1,19 +1,17 @@
 <?php
 
-namespace Kaperys\Financial\Message\Unpacker;
+namespace Consilience\Iso8583\Message\Unpacker;
 
-use Kaperys\Financial\Cache\CacheManager;
-use Kaperys\Financial\Message\AbstractPackUnpack;
-use Kaperys\Financial\Message\Schema\MessageSchemaInterface;
-use Kaperys\Financial\Message\Schema\SchemaManager;
-use Kaperys\Financial\Message\Unpacker\Exception\MessageLengthHeaderException;
+use Consilience\Iso8583\Cache\CacheManager;
+use Consilience\Iso8583\Message\AbstractPackUnpack;
+use Consilience\Iso8583\Message\Schema\MessageSchemaInterface;
+use Consilience\Iso8583\Message\Schema\SchemaManager;
+use Consilience\Iso8583\Message\Unpacker\Exception\MessageLengthHeaderException;
 
 /**
  * Class MessageUnpacker
  *
- * @package Kaperys\Financial\Message\Unpacker
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Unpacker
  */
 class MessageUnpacker extends AbstractPackUnpack
 {

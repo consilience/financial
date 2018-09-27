@@ -1,16 +1,14 @@
 <?php
 
-namespace Kaperys\Financial\Message\Mapper;
+namespace Consilience\Iso8583\Message\Mapper;
 
 use DateTime;
-use Kaperys\Financial\Container\PropertyAnnotationContainer;
+use Consilience\Iso8583\Container\PropertyAnnotationContainer;
 
 /**
  * Class BinaryMapper
  *
- * @package Kaperys\Financial\Message\Mapper
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Mapper
  */
 class BinaryMapper implements MapperInterface
 {

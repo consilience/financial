@@ -1,18 +1,16 @@
 <?php
 
-namespace Kaperys\Financial\Message\Schema\Validator\Exception;
+namespace Consilience\Iso8583\Message\Schema\Validator\Exception;
 
 use Exception;
-use Kaperys\Financial\Container\PropertyAnnotationContainer;
+use Consilience\Iso8583\Container\PropertyAnnotationContainer;
 
 /**
  * Thrown when the schema field validation fails
  *
  * Class FieldValidationException
  *
- * @package Kaperys\Financial\Message\Schema\Validator\Exception
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Message\Schema\Validator\Exception
  */
 class FieldValidationException extends Exception
 {

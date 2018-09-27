@@ -1,9 +1,9 @@
-# kaperys/financial
+# consilience/iso8583
 A simple PHP ISO8583 pack and unpack library
 
 [![Build Status](https://travis-ci.org/consilience/iso8583.svg?branch=master)](https://travis-ci.org/consilience/iso8583)
 FIXME:
-[![Coverage Status](https://coveralls.io/repos/github/kaperys/financial/badge.svg?branch=master)](https://coveralls.io/github/kaperys/financial?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/consilience/iso8583/badge.svg?branch=master)](https://coveralls.io/github/consilience/iso8583?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Basic Usage
@@ -51,15 +51,15 @@ echo $schema->getCardAcceptorNameLocation();
 ## Installation
 Install the latest version with Composer:
 ```bash
-composer require kaperys/financial
+composer require consilience/iso8583
 ```
 
 ## About
-kaperys/financial is a simple PHP ISO8583 message pack/unpack library, capable of supporting multiple message schemas and versions. 
+consilience/iso8583 is a simple PHP ISO8583 message pack/unpack library, capable of supporting multiple message schemas and versions.
 
 ### Requirements
  - PHP v7.0+
- 
+
 ### Documentation
  - [Introduction and Concepts](doc/00-introduction-and-concepts.md)
  - [Usage](doc/01-usage.md)
@@ -68,18 +68,15 @@ kaperys/financial is a simple PHP ISO8583 message pack/unpack library, capable o
  - [Development](doc/04-development.md)
 
 ### Issues
-Please use the [GitHub](https://github.com/kaperys/financial/issues) issue tracker to report bugs.
+Please use the [GitHub](https://github.com/consilience/iso8583/issues) issue tracker to report bugs.
 
 ### Contributing
 Please use the [HubFlow](https://datasift.github.io/gitflow/) branching strategy to contribute work, using the GitHub issue tracker ID as your branch key. For example, feature/1_ComposerSupport.
 
 If you would like to contribute to core (non-issue) work, please grep the codebase for `@todo`.
 
-### Author
-Mike Kaperys - <mike@kaperys.io> - <https://kaperys.io>
-
 ### License
-kaperys/financial is licensed under the MIT License - see the `LICENSE` file for details
+consilience/iso8583 is licensed under the MIT License - see the `LICENSE` file for details
 
 ## Change Log
 See [changelog.md](changelog.md)

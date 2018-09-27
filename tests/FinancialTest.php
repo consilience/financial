@@ -1,21 +1,19 @@
 <?php
 
-namespace Kaperys\Financial\Tests;
+namespace Consilience\Iso8583\Tests;
 
-use Kaperys\Financial\Cache\CacheManager;
-use Kaperys\Financial\Financial;
-use Kaperys\Financial\Message\Packer\MessagePacker;
-use Kaperys\Financial\Message\Schema\ISO8583;
-use Kaperys\Financial\Message\Schema\SchemaManager;
-use Kaperys\Financial\Message\Unpacker\MessageUnpacker;
+use Consilience\Iso8583\Cache\CacheManager;
+use Consilience\Iso8583\Financial;
+use Consilience\Iso8583\Message\Packer\MessagePacker;
+use Consilience\Iso8583\Message\Schema\ISO8583;
+use Consilience\Iso8583\Message\Schema\SchemaManager;
+use Consilience\Iso8583\Message\Unpacker\MessageUnpacker;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class FinancialTest
  *
- * @package Kaperys\Financial\Tests
- *
- * @author Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Tests
  */
 class FinancialTest extends TestCase
 {

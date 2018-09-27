@@ -1,20 +1,18 @@
 <?php
 
-namespace Kaperys\Financial\Container;
+namespace Consilience\Iso8583\Container;
 
-use Kaperys\Financial\Message\Constants\Display;
-use Kaperys\Financial\Message\Mapper\AlphanumericMapper;
-use Kaperys\Financial\Message\Mapper\BinaryMapper;
-use Kaperys\Financial\Message\Mapper\Exception\MapperNotFoundException;
-use Kaperys\Financial\Message\Mapper\MapperInterface;
-use Kaperys\Financial\Message\Schema\Helpers\AnnotationNameFormatter;
+use Consilience\Iso8583\Message\Constants\Display;
+use Consilience\Iso8583\Message\Mapper\AlphanumericMapper;
+use Consilience\Iso8583\Message\Mapper\BinaryMapper;
+use Consilience\Iso8583\Message\Mapper\Exception\MapperNotFoundException;
+use Consilience\Iso8583\Message\Mapper\MapperInterface;
+use Consilience\Iso8583\Message\Schema\Helpers\AnnotationNameFormatter;
 
 /**
  * Class PropertyAnnotationContainer
  *
- * @package Kaperys\Financial\Container
- *
- * @author  Mike Kaperys <mike@kaperys.io>
+ * @package Consilience\Iso8583\Container
  */
 class PropertyAnnotationContainer
 {
