@@ -1,7 +1,8 @@
 # kaperys/financial
 A simple PHP ISO8583 pack and unpack library
 
-[![Build Status](https://travis-ci.org/kaperys/financial.svg?branch=master)](https://travis-ci.org/kaperys/financial)
+[![Build Status](https://travis-ci.org/consilience/iso8583.svg?branch=master)](https://travis-ci.org/consilience/iso8583)
+FIXME:
 [![Coverage Status](https://coveralls.io/repos/github/kaperys/financial/badge.svg?branch=master)](https://coveralls.io/github/kaperys/financial?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
